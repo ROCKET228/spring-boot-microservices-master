@@ -64,7 +64,6 @@ public class OrderService {
 
             if (allProductsInStock) {
                 orderRepository.save(order);
-                // publish Order Placed Event
                 applicationEventPublisher.publishEvent(new OrderPlacedEvent(this, order.getOrderNumber()));
                 return "Order Placed";
             } else {
